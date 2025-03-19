@@ -1,11 +1,9 @@
-﻿SendMode Input  
-SetWorkingDir %A_ScriptDir% 
-#SingleInstance, Force
+﻿#SingleInstance, Force
 #NoEnv  
 #MaxThreadsperHotkey 2
 SendMode Input 
-WinMinimizeAll
 
+WinMinimizeAll
 WinActivate, Roblox
 if WinActive("Roblox")
 	{
@@ -18,11 +16,53 @@ else
 	}
 	
     MsgBox, ,abcdhijdfvi9rhvjriobjtg ,this only to solve bug with Windows, 0.5
+    WinGet, activeWindow, ID, A
+    if (!activeWindow)
+        return
 
-Tooltip, Grace test version 388, 75, 900, 1
-ToolTip, Press F1 to start, 75, 920, 2
-ToolTip, Press F2 to reload, 75, 940, 3
-Tooltip Press F3 to exit, 75, 960, 4
+    WinGetPos, winX, winY, winWidth, winHeight, ahk_id %activeWindow%
+
+
+    SysGet, screenWidth, 78
+    SysGet, screenHeight, 79
+
+
+    if (winX = 0 && winY = 0 && winWidth = screenWidth && winHeight = screenHeight) {
+
+ 
+
+    } else {
+
+        Send, {F11}
+    }
+
+
+    
+Sleep, 100
+
+
+    WinGetPos, winX, winY, winWidth, winHeight, ahk_id %activeWindow%
+
+    SysGet, screenWidth, 78
+    SysGet, screenHeight, 79
+
+    winWidthRatio := winWidth / screenWidth
+    winHeightRatio := winHeight / screenHeight
+
+     (winX = 0 && winY = 0 && winWidthRatio = 1 && winHeightRatio = 1) 
+
+Sleep, 100
+
+
+toggle = 0
+
+lX := winWidth * 0.03
+lY := winHeight * 0.9
+
+
+ToolTip, Off, lX, lY, 1
+
+
 
 ;   Keys        ===================================================================================
 
@@ -32,24 +72,24 @@ F1::
 
 ;=================================================================================================
 
-    toggle := !toggle
+toggle := !toggle
     
-    if (toggle) {
+if (toggle) {
 
-        ToolTip, Press F1 to stop, 75, 920, 2
-        Loop {
-            Send, e
-            if (!toggle) {
+    ToolTip, On, lX, lY, 1
+    Loop {
+      Send, e
 
-                ToolTip, , , ,2
-                break
-            }
+        if (!toggle) {
+
+            ToolTip, , , ,1
+            break
         }
-    } else {
-
-        ToolTip, Stopped, , , 2
-
     }
-    
+} else {
 
-ToolTip, Press F1 to start, 75, 920, 2
+; dont know what to do
+
+}
+
+ToolTip, Off, lX, lY, 1
