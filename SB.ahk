@@ -1,8 +1,6 @@
 ﻿#SingleInstance, Force
-#MaxThreadsPerHotkey, 2
-WinMinimizeAll
-
 WinActivate, Roblox
+
 if WinActive("Roblox")
 	{
 	WinMaximize, Roblox
@@ -15,10 +13,56 @@ else
 	
     MsgBox, ,abcdhijdfvi9rhvjriobjtg ,this only to solve bug with Windows, 0.5
 
-toggle := 0
+Sleep, 100
 
-ToolTip, Slap Battles, 75, 980, 2
-ToolTip, Status On, 75, 1000, 1
+ ; =================================================================================================
+
+    WinGet, activeWindow, ID, A
+    if (!activeWindow)
+        return
+
+    WinGetPos, winX, winY, winWidth, winHeight, ahk_id %activeWindow%
+
+
+    SysGet, screenWidth, 78
+    SysGet, screenHeight, 79
+
+
+    if (winX = 0 && winY = 0 && winWidth = screenWidth && winHeight = screenHeight) {
+
+ 
+
+    } else {
+
+        Send, {F11}
+    }
+
+
+    
+Sleep, 100
+
+
+    WinGetPos, winX, winY, winWidth, winHeight, ahk_id %activeWindow%
+
+    SysGet, screenWidth, 78
+    SysGet, screenHeight, 79
+
+    winWidthRatio := winWidth / screenWidth
+    winHeightRatio := winHeight / screenHeight
+
+     (winX = 0 && winY = 0 && winWidthRatio = 1 && winHeightRatio = 1) 
+
+Sleep, 100
+
+toggle = 0
+
+sX := winWidth * 0.03
+sY := winHeight * 0.85
+Abc := 20
+
+
+ToolTip, Slap Battles, sX, sY, 1
+ToolTip, Status On, sX, sY + Abc, 2
 
 {
 F2::
@@ -42,12 +86,12 @@ if toggle = 0
     {
         toggle := 1
 Suspend, on
-ToolTip, Status Off, 75, 1000, 1
+ToolTip, Status Off, sX, sY + Abc, 2
 }
   Else
     {
         toggle := 0
-		ToolTip, Status On, 75, 1000, 1
+		ToolTip, Status On, sX, sY + Abc, 2
   Suspend, Off
 }
  Return
