@@ -1,4 +1,6 @@
 ﻿#SingleInstance, Force
+
+WinMinimizeAll
 WinActivate, Roblox
 
 if WinActive("Roblox")
