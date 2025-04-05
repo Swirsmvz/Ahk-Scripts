@@ -1,16 +1,23 @@
- ; The script will open doors for you
- ; If you also use the 'E' key for other actions in the game, you can change it so it doesnt interfere with the script
+; The script will open doors for you
+; If you also use the 'E' key for other actions in the game, you can change it so it doesnt interfere with the script
+; 1:: helps you deal with DoomBringer, also made in a way so that you can use the modifier with pipebomb
+; 2:: will only send 4, this is due to the plug modulers
+; The key bindings used for the script are:
+; crouch: M1
+; use object: M2
+; holster item: Q
 
 #SingleInstance, Force
 #NoEnv  
 #MaxThreadsperHotkey 2
 SendMode, Input 
 
-WinMinimizeAll
+
 WinActivate, Roblox
 if WinActive("Roblox")
 	{
-	WinMaximize, Roblox
+        WinMinimizeAll
+	    WinMaximize, Roblox
 	}
 else
 	{
@@ -44,34 +51,55 @@ Sleep, 100
 
 Sleep, 100
 
-ToolTipsX := winWidth * 0.03
-ToolTipsY := winHeight * 0.8
+HpX := winWidth * 0.03
+HpY := winHeight * 0.85
 Abc := 20
 
-ToolTip, Grace, ToolTipsX, ToolTipsY, 1
-ToolTip, Press F1 to start, ToolTipsX, ToolTipsY + Abc, 2
-ToolTip, Press F2 to reload, ToolTipsX, ToolTipsY + (2 * Abc), 3
-ToolTip, Press F3 to exit, ToolTipsX, ToolTipsY + (3 * Abc), 4
+ToolTip, Grace, HpX, HpY, 1
+ToolTip, Press F1 to start, HpX, HpY + Abc, 2
 
 F2:: Reload
 F3:: ExitApp
 F1::
-
-    toggle := !toggle
-    if (toggle) {
-        ToolTip, Press F1 to stop, ToolTipsX, ToolTipsY + Abc, 2
+    Suffer := !Suffer
+    if (Suffer) {
+        ToolTip, Press F1 to stop, HpX, HpY + Abc, 2
         Loop {
             Send, {e down}
             Sleep, 500
             Send, {e up}
             Sleep, 10
-            if (!toggle) {
+            if (!Suffer) {
                 ToolTip, , , ,2
                 break
             }
         }
     } else {
- ;idk 
-    }
-    
-ToolTip, Press F1 to start, ToolTipsX, ToolTipsY + Abc, 2
+        ; i don't know what to say
+        ; i don't know what to do
+        ; i'm disgusting
+}
+ToolTip, Press F1 to start, HpX, HpY + Abc, 2
+Return
+
+
+{
+    1::
+    Send, 3
+    Sleep, 100
+    Click, R
+    Sleep, 100
+    Click, R
+    Sleep, 100
+    Click, R
+    Sleep, 100
+    Click, R
+    Send, q
+Return
+}
+
+{
+    2::
+    Send, 4
+Return
+}
